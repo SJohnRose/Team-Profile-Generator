@@ -22,11 +22,11 @@ function generateHTML(EmployeeObj) {
         <div class="main">
                 <div id="employee-section">
                     <div class="employee-card">
-                        <h1 id="employee-name"> ${EmployeeObj.employeeName} </h1>
+                        <h1 id="employee-name"> ${EmployeeObj.name} </h1>
                         <img id="role-icon" width="50" height="50" alt=""/>
                         <h3 id="employee-role"></h3>
-                        <h3 id="employee-id">ID: ${EmployeeObj.employeeID}</h3>
-                        <h3 id="employee-email">Email: ${EmployeeObj.employeeEmail}</h3>
+                        <h3 id="employee-id">ID: ${EmployeeObj.id}</h3>
+                        <h3 id="employee-email">Email: ${EmployeeObj.email}</h3>
                         <h3 id="employee-officeNumber">Office Number: ${EmployeeObj.officeNumber}</h3>
                     </div> 
                     
