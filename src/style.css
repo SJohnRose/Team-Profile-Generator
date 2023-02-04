@@ -1,0 +1,39 @@
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(6, 6, 66);
+    background-image: linear-gradient(to right, rgb(89, 112, 173) , dark rgb(11, 11, 65));
+    width: 100%;
+    height: 100px;
+    color: white;
+}
+
+.main {
+    display:flex;
+    width: 100%;
+    height: 900px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+
+
+#employee-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 900px;
+    background-color:white;
+}
+
+
+.employee-card {
+    width:250px;
+    height: 350px;
+    background-color: rgb(58,103,133);
+    padding: 5px;
+    margin: 10px;
+    font-weight: bold;
+}
