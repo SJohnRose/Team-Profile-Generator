@@ -2,6 +2,8 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+const generateHTML= require("./src/generateHTML");
+
 
 const inquirer = require('inquirer');
 const { default: Choices } = require("inquirer/lib/objects/choices");
@@ -39,7 +41,7 @@ inquirer
     },
   ])
   .then(answers => {
-    //console.info('Answer:', answers);
+    console.info('Answer:', answers);
     if (answers.employeeAdd == "Engineer") {
         inquirer
             .prompt([
@@ -68,8 +70,8 @@ inquirer
         })
     }
     else if (answers.employeeAdd == "End Process") {
-        console.log("End");
-        generateHTML(ManagerObj, EngineerObj, InternObj);
+        //console.info("End" + answers);
+        generateHTML(answers);
     }
     else {
         ManagerObj = new Manager(answers.employeeName, answers.employeeID, answers.employeeEmail, answers.EmployeeOfficeNumber);
