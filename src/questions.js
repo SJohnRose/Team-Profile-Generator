@@ -1,9 +1,10 @@
 const inquirer = require('inquirer');
 
-
-function askQuestions() {
-inquirer
-  .prompt([
+// function askQuestions() {
+ 
+// inquirer
+//   .prompt([
+const questions = [   
     {
       name: 'employeeName',
       message: 'What is your name?'
@@ -26,14 +27,5 @@ inquirer
         type: 'list',
         choices: ['Engineer', 'Intern', 'End Process']
     },
-    ])
-    .then(answers => {
-        console.log(answers);
-        return answers})
-    .catch(error => {
-        console.log(error)
-    });
-    }
-  
-
-  module.exports = askQuestions();
+]
+  module.exports = questions;

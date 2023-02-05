@@ -3,7 +3,7 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
 const generateHTML= require("./src/generateHTML");
-const askQuestions = require("./src/questions");
+const commonQuestions = require("./src/questions");
 
 
 const inquirer = require('inquirer');
@@ -13,84 +13,84 @@ const { listenerCount } = require("process");
 var ManagerObj;
 var EngineerObj;
 var InternObj;
-var teamDataList = [{}];
+var teamDataList = [];
+var teamRole;
 
 
 function buildTeam() {
-    var answers = askQuestions();
-// inquirer
-//   .prompt([
-//     {
-//       name: 'employeeName',
-//       message: 'What is your name?'
-//     },
-//     {
-//         name: 'employeeID',
-//         message: 'What is your Employee ID'
-//     },
-//     {
-//         name: 'employeeEmail',
-//         message: 'What is your email ID?'
-//     },
-//     {
-//         name: 'officeNumber',
-//         message: 'What is your Office Number?'
-//     },
-//     {
-//         name: 'employeeAdd',
-//         message: 'Which team member do you want to add? (Use arrow key)',
-//         type: 'list',
-//         choices: ['Engineer', 'Intern', 'End Process']
-//     },
-//   ])
-//   .then(answers => {
-//     console.info('Answer:', answers);
-//     if (answers.employeeAdd == "Engineer") {
-//         inquirer
-//             .prompt([
-//             {
-//                 name: 'employeeGithub',
-//                 message: 'What is your Github Profile ID?'
-//             },
-//         ])
-//         .then(result =>  {
-//             EngineerObj = new Engineer(answers.employeeName, answers.employeeID, answers.employeeEmail, result.employeeGithub);
-//             addToTeamList(EngineerObj);
-            
-//         })
-//     }
-//     else if (answers.employeeAdd == "Intern") {
-//         inquirer
-//             .prompt([
-//             {
-//                 name: 'employeeSchool',
-//                 message: 'What is your school name?'
-//             },
-//         ])
-//         .then(result =>  {
-//             InternObj = new Intern(answers.employeeName, answers.employeeID, answers.employeeEmail, result.employeeSchool);
-//             addToTeamList(InternObj);
-//         })
-//     }
-//     else if (answers.employeeAdd == "End Process") {
-//         //console.info("End" + answers);
-//         generateHTML(teamDataList[0]);
-//     }
-//     else {
-//         ManagerObj = new Manager(answers.employeeName, answers.employeeID, answers.employeeEmail, answers.EmployeeOfficeNumber);
-//         console.log(ManagerObj.getName());
-//         addToTeamList(ManagerObj);
-//     }
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   });
+    inquirer.prompt(commonQuestions).then((answers) => {
+    //console.info('Answer:', answers);
+        inquirer.prompt([
+        {
+            name: 'officeNumber',
+            message: 'What is your Office Number?'
+        },
+        ])
+        .then(managerData => {
+
+            ManagerObj = new Manager(answers.employeeName, answers.employeeID, answers.employeeEmail, managerData.OfficeNumber);
+            addToTeamList(ManagerObj);
+        });
+    });
+    teamRole = function() {
+        inquirer.prompt([
+        {
+            name: 'role',
+            message: 'Which team member do you want to add? (Use arrow key)',
+            type: 'list',
+            choices: ['Engineer', 'Intern', 'End Process']
+        },
+        ])
+        .then((teamRoleInfo) => {
+            if (teamRoleInfo.role == "Engineer") {
+                inquirer.prompt(commonQuestions).then((engineerData) => {
+                    console.info('Answer:', engineerData);
+                    inquirer.prompt([
+                    {
+                        name: 'github',
+                        message: 'What is your Github Profile ID?'
+                    },
+                ])
+                .then(engineerGithub =>  {
+                    EngineerObj = new Engineer(engineerData.employeeName, engineerData.employeeID, engineerData.employeeEmail, engineerGithub.github);
+                    addToTeamList(EngineerObj);
+                    teamRole();
+                });
+                });
+            }
+            else if (teamRoleInfo.role == "Intern") {
+                inquirer.prompt(commonQuestions).then((internData) => {
+                console.info('Answer:', internData);
+                inquirer.prompt([
+                {
+                    name: 'school',
+                    message: 'What is your school name?'
+                },
+                ])
+                .then(internSchool =>  {
+                    InternObj = new Intern(internData.employeeName, internData.employeeID, internData.employeeEmail, internSchool.school);
+                    addToTeamList(InternObj);
+                    teamRole();
+                })
+                });
+            }
+            else if (teamRoleInfo.role == "End Process") {
+                //console.info("End" + answers);
+                generateHTML(teamDataList[0]);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
 }
+
 
 function addToTeamList(memberObj) {
     teamDataList.push(memberObj);
     console.log(teamDataList);
-    buildTeam();
+    
 }
+
 
 buildTeam();
