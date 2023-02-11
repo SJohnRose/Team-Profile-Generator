@@ -1,5 +1,5 @@
 const employeeFile = require('fs');
-const fileName = "temp.html";
+const fileName = "log.html";
 
 var employeeData, employeeData1, employeeData2, employeeData3;
 
@@ -22,7 +22,7 @@ function generateHTML(EmployeeObj) {
     
     
         <div class="main">
-                <div id="employee-section">`
+                <div id="employee-section">`;
     employeeData2 = 
                     `<div class="employee-card">
                         <h1 id="employee-name"> ${EmployeeObj.name} </h1>
@@ -31,7 +31,7 @@ function generateHTML(EmployeeObj) {
                         <h3 id="employee-id">ID: ${EmployeeObj.id}</h3>
                         <h3 id="employee-email">Email: ${EmployeeObj.email}</h3>
                         <h3 id="employee-officeNumber">Office Number: ${EmployeeObj.officeNumber}</h3>
-                    </div>` 
+                    </div>` ;
                     
     employeeData3 =             
                 `</div>
