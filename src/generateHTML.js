@@ -1,5 +1,5 @@
 const employeeFile = require('fs');
-const fileName = "log.html";
+const fileName = "team.html";
 
 var employeeData, employeeData1, employeeData2, employeeData3;
 
@@ -42,10 +42,10 @@ function generateHTML(EmployeeObj) {
     
     </html>`;
     employeeData = employeeData1 + employeeData2 + employeeData3;
-    employeeFile.writeFile(fileName, employeeData, (err) =>
+    employeeFile.writeFileSync(fileName, employeeData, (err) =>
        err ? console.error(err) : console.log('Success!')
     );
-    
+    process.exit();
 }
 
 module.exports = generateHTML;

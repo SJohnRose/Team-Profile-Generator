@@ -36,7 +36,7 @@ async function askQuestions() {
         if (addAgain.addMember == 'Quit') {
             console.log(teamDataList[0]);
             generateHTML(teamDataList[0]);
-            process.exit();
+            
         }
 
         else if(member == 'Engineer') {
