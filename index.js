@@ -35,7 +35,7 @@ async function askQuestions() {
         member = findMember(addAgain);
         if (addAgain.addMember == 'Quit') {
             console.log(teamDataList[0]);
-            generateHTML(teamDataList[0]);
+            generateHTML(teamDataList);
             
         }
 
