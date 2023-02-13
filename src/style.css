@@ -22,7 +22,7 @@ header {
 
 #employee-section {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     height: 900px;
     background-color:white;
@@ -36,4 +36,6 @@ header {
     padding: 5px;
     margin: 10px;
     font-weight: bold;
+    color: white;
 }
+
