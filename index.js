@@ -1,8 +1,11 @@
+// import the objects
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
 const generateHTML= require("./src/generateHTML");
+
+// import the questions for each type of employee
 const managerQuestions = require("./src/managerQuestions");
 const engineerQuestions = require("./src/engineerQuestions");
 const internQuestions = require("./src/internQuestions");
@@ -16,9 +19,9 @@ var ManagerObj;
 var EngineerObj;
 var InternObj;
 var teamDataList = [];
-var member;
 
 
+// displays prompt to get team details
 async function askQuestions() {
     const answers1 = await inquirer.prompt(managerQuestions);
     ManagerObj = new Manager(answers1.employeeName, answers1.employeeID, answers1.employeeEmail, answers1.officeNumber);
@@ -32,19 +35,16 @@ async function askQuestions() {
             choices: ['Engineer', 'Intern', 'Quit'],
         }
         ]);
-        member = findMember(addAgain);
+        
         if (addAgain.addMember == 'Quit') {
-            console.log(teamDataList[0]);
             generateHTML(teamDataList);
-            
         }
-
-        else if(member == 'Engineer') {
+        else if(addAgain.addMember == 'Engineer') {
             var answers2 = await inquirer.prompt(engineerQuestions);
             EngineerObj = new Engineer(answers2.employeeName, answers2.employeeID, answers2.employeeEmail, answers2.github);
             addToTeamList(EngineerObj);
         }
-        else if (member == 'Intern') {
+        else if (addAgain.addMember == 'Intern') {
             var answers2 = await inquirer.prompt(internQuestions);
             InternObj = new Intern(answers2.employeeName, answers2.employeeID, answers2.employeeEmail, answers2.school);
             addToTeamList(InternObj);
@@ -54,15 +54,11 @@ async function askQuestions() {
     }
 }
 
-function findMember(ans) {
-    if (ans.addMember == 'Engineer') return 'Engineer';
-    else if (ans.addMember == 'Intern') return 'Intern';
-}
 
+// add each new team member to an array to create web page
 function addToTeamList(memberObj) {
     teamDataList.push(memberObj);
-    console.log(teamDataList);
-    
+       
 }
 
 

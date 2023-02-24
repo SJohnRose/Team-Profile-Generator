@@ -23,6 +23,8 @@ header {
 #employee-section {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
     height: 900px;
     background-color:white;
