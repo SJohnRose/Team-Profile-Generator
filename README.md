@@ -22,6 +22,6 @@ The following image shows the application's appearance and functionality
 https://github.com/SJohnRose/Team-Profile-Generator/blob/main/assets/screenshot1.PNG
 
 # How to access the application?
-Please use this link:
+Please use this link:https://github.com/SJohnRose/Team-Profile-Generator
 
 # Walkthrough video link
