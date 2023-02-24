@@ -25,3 +25,4 @@ https://github.com/SJohnRose/Team-Profile-Generator/blob/main/assets/screenshot1
 Please use this link:https://github.com/SJohnRose/Team-Profile-Generator
 
 # Walkthrough video link
+https://watch.screencastify.com/v/6JV5GdybjozSk0DcuXhy 
